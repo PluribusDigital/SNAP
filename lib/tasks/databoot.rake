@@ -1,4 +1,4 @@
 task "pop" => [:environment] do 
-  Retailer.create(name:"safeway")
-  Retailer.create(name:"7-eleven")
+  Retailer.all.each{|r|r.destroy}
+  SnapRetailerService.import_data
 end

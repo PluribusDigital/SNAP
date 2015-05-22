@@ -4,7 +4,7 @@ class RetailersController < ApplicationController
   # GET /retailers
   # GET /retailers.json
   def index
-    @retailers = Retailer.all
+    @retailers = Retailer.all.limit(10)
   end
 
   # GET /retailers/1
