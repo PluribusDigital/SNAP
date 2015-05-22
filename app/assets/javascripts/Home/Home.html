@@ -1,6 +1,12 @@
-﻿<div google-map style="height: 300px;" class="col-xs-12" zoom="10" traffic="true" lat="38.8940194" lng="-77.07722">
-
+﻿<div class="col-xs-12 table-responsive">
+    <table class="table" style="table-layout: fixed; width: 100%">
+        <tr ng-repeat="r in retailers">
+            <td style="white-space: normal"><a ng-href="{{r.url}}">{{r.name}}</a></td>
+            <td>{{r.address1}}<br />{{r.city}}, {{r.state}} {{r.zip4}}-{{r.zip5}}</td>
+        </tr>
+    </table>
 </div>
+
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <table class="col-xs-12">
     <tr>
