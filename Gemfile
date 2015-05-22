@@ -4,7 +4,7 @@ ruby '2.1.5'
 
 gem 'rails', '4.2.0'
 # Use postgresql as the database for Active Record
-gem 'pg'
+gem 'pg', '~> 0.18.2'
 # Bower to manage front-end dependencies
 gem 'bower-rails'
 # Use SCSS for stylesheets
@@ -18,7 +18,7 @@ gem 'httparty'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 
-gem 'angular-rails-templates'
+gem 'angular-rails-templates', '~> 0.1.3'
 
 group :production, :staging do
   gem "rails_12factor"
@@ -38,7 +38,7 @@ group :test, :development do
   gem "capybara"
   gem "database_cleaner"
   gem "selenium-webdriver"
-  gem "teaspoon"
+  gem "teaspoon-jasmine"
   gem "poltergeist"
   gem "phantomjs"
   gem 'dotenv-rails'
