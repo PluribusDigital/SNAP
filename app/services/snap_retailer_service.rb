@@ -6,21 +6,9 @@ class SnapRetailerService
   end
 
   def self.import_data
-    csv = CSV.parse( File.read(file_location) , headers:true )
-    csv = csv.select{|r|r[6]=="VA"}
-    csv.each do |row|
-      Retailer.create(
-        name: row[0], 
-        longitude: row[1], 
-        latitude: row[2], 
-        address1: row[3], 
-        address2: row[4], 
-        city: row[5], 
-        state: row[6], 
-        zip5: row[7], 
-        zip4: row[8], 
-        county: row[9] 
-      )
+    cols = [:name,:longitude,:latitude,:address1,:address2,:city,:state,:zip5,:zip4,:county]
+    CSV.foreach(file_location, headers:false) do |row|
+      Retailer.create(Hash[cols.zip row]) if row[6]=="VA" # limit to only virginia for initial prototype purpose
     end
   end
 
