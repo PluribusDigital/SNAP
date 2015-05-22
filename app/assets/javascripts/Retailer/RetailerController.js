@@ -1,4 +1,4 @@
-app.controller("RetailerController", ['$scope', '$routeParams', '$resource', function ($scope, $routeParams, $resource) {
+app.controller("RetailerController", ['$scope', '$routeParams', '$resource', '$location', function ($scope, $routeParams, $resource, $location) {
   var Retailer;
   Retailer = $resource('/retailers/:id', {
       id: "@id",
@@ -15,5 +15,9 @@ app.controller("RetailerController", ['$scope', '$routeParams', '$resource', fun
   } else {
       $scope.retailer = {};
   }
+  $scope.home = function () {
+      return $location.path("/");
+  };
+
   window.scope = $scope;
 }]);
