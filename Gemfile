@@ -18,6 +18,9 @@ gem 'httparty'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 
+# Application server
+gem 'passenger'
+
 gem 'angular-rails-templates', '~> 0.1.3'
 
 group :production, :staging do
