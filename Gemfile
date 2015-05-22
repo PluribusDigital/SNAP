@@ -23,6 +23,7 @@ gem 'passenger'
 
 gem 'angular-rails-templates', '~> 0.1.3'
 gem 'request_store_rails'
+gem 'geokit-rails'
 
 group :production, :staging do
   gem "rails_12factor"

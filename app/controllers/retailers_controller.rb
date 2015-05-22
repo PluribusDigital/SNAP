@@ -5,6 +5,11 @@ class RetailersController < ApplicationController
   # GET /retailers.json
   def index
     @retailers = Retailer.all.limit(10)
+    if params[:lat] && params[:lng]
+      @retailers.within(5, origin: Location.new(lat: params[:lat], long: params[:lng]))
+    else
+      @retailers.within(5, origin: current_location)
+    end
   end
 
   # GET /retailers/1

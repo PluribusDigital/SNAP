@@ -1,5 +1,6 @@
 class Retailer < ActiveRecord::Base
-  def self.within(boundary)
-    self.where(latitude: boundary.west..boundary.east, longitude: boundary.north..boundary.south)
-  end
+  acts_as_mappable default_units: :miles
+
+  alias_attribute :lat, :latitude
+  alias_attribute :lng, :longitude
 end
