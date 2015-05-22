@@ -5,46 +5,44 @@ app.controller("HomeController", function ($scope, $http) {
     $scope.lat = 40.7637828;
     $scope.lng = -73.9859116;
 
+    ///////////////////////////////////////////////////////////////////////////
+    // Call Outs
+
+    $scope.lookupLatLng = function () {
+        $http({
+            method: 'GET',
+            url: 'https://maps.googleapis.com/maps/api/geocode/json',
+            params: { components: 'postal_code:' + $scope.zipCode },
+        }).success($scope.onGeocodeZipCode)
+            .error($scope.onError);
+    };
+
     $scope.executeSearch = function () {
         $http.get('http://localhost:3000/retailers.json', {
             params: { 'lat': $scope.lat, 'lng': $scope.lng },
-        }).success($scope.onResults)
-          .error(function (data) { alert('doh'); });
+        }).success($scope.onRetailers)
+            .error($scope.onError);
     };
 
-    $scope.onResults = function (data, status, headers, config) {
-        // If there are results, extract the latitude and longitude of the zip code's center
-        if (data.retailers.length > 0) {
-            $scope.retailers = data.retailers;
-            console.log($scope.retailers);
-        }
-        else {
-            alert('Could not locate stores: ' + $scope.zipCode);
-        }
-    }
+    ///////////////////////////////////////////////////////////////////////////
+    // Callbacks
 
-    $scope.searchFromHere = function () {
-        navigator.geolocation.getCurrentPosition($scope.currentPosition);
-    };
-
-    $scope.currentPosition = function (position) {
+    $scope.onCurrentPosition = function (position) {
         $scope.lat = position.coords.latitude;
         $scope.lng = position.coords.longitude;
         $scope.executeSearch();
     };
 
-    $scope.searchForZip = function () {
-        $http({
-            method: 'GET',
-            url: 'https://maps.googleapis.com/maps/api/geocode/json',
-            params: { components: 'postal_code:' + $scope.zipCode },
-        }).success($scope.geocodeResultPostalCode)
-        .error(function (data) {
-            alert('doh');
-        });
+    $scope.onRetailers = function (data, status, headers, config) {
+        // If there are results, extract the latitude and longitude of the zip code's center
+        if (data.retailers.length > 0) {
+            $scope.retailers = data.retailers;
+        }
+        else
+            $scope.onError(data);
     };
 
-    $scope.geocodeResultPostalCode = function (data, status, headers, config) {
+    $scope.onGeocodeZipCode = function (data, status, headers, config) {
         // If there are results, extract the latitude and longitude of the zip code's center
         if (data.results.length > 0) {
             var a = data.results[0].geometry.location;
@@ -56,4 +54,20 @@ app.controller("HomeController", function ($scope, $http) {
             alert('Could not locate zip code: ' + $scope.zipCode);
         }
     };
+
+    $scope.onError = function (data) {
+        alert('We apologize. We were unable to retrieve your results');
+    };
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Bound Methods
+
+    $scope.searchFromHere = function () {
+        navigator.geolocation.getCurrentPosition($scope.onCurrentPosition);
+    };
+
+    $scope.searchForZip = function () {
+        $scope.lookupLatLng();
+    };
+
 });
