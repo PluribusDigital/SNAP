@@ -1,0 +1,10 @@
+<div class="col-xs-12">
+<h2>{{retailer.name}}</h2>
+<p>
+  <div>{{retailer.address1}}</div>
+  <div ng-if="retailer.address2">{{retailer.address2}}</div>
+  <div> {{retailer.city}}, {{retailer.state}}, {{retailer.zip5}} </div>
+</p>
+
+<div google-map style="height: 20em" class="col-xs-12" zoom="10" traffic="true" lat="{{retailer.latitude}}" lng="{{retailer.longitude}}">
+</div>
