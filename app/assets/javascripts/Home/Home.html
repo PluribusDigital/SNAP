@@ -1,22 +1,16 @@
-﻿<div google-map style="height: 500px;" class="col-xs-12" zoom="10" traffic="true" lat="38.8940194" lng="-77.07722">
+﻿<div google-map style="height: 300px;" class="col-xs-12" zoom="10" traffic="true" lat="38.8940194" lng="-77.07722">
 
 </div>
 <nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-        <ul class="nav navbar-nav nav-pills">
-        <li>
-            <a ng-href="#"><span class="glyphicon glyphicon-screenshot"></span></a>
-        </li>
-        <li>
-            <a ng-href="#"><span class="glyphicon glyphicon-search"></span></a>
-        </li>
-        <li>
-            <a ng-href="#"><span class="glyphicon glyphicon-th-list"></span></a>
-        </li>
-        <li>
-            <a popover-placement="top" popover="Profile Screen"><span class="glyphicon glyphicon-user"></span></a>
-        </li>
-        </ul>
-    </div><!-- /.container-fluid -->
+    <table class="col-xs-12">
+    <tr>
+        <td><button popover-placement="top" popover="Use Location to Search"><span class="glyphicon glyphicon-screenshot"></span></button></td>
+        <td>
+            <input type="text" placeholder="90210" ng-model="zipCode" />
+            <button ng-click="searchForZip()"><span class="glyphicon glyphicon-search"></span></button>
+        </td>
+        <td><button popover-placement="top" popover="Pick from a list of known sites"><span class="glyphicon glyphicon-th-list"></span></button></td>
+        <td><button popover-placement="top" popover="Profile Screen"><span class="glyphicon glyphicon-user"></span></button></td>
+    </tr>
+    </table>
 </nav>
