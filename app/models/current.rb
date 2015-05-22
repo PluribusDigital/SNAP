@@ -15,5 +15,5 @@ module Current
     end
   end
   
-  forward_attrs :RequestLocals, :user, :location
+  forward_attrs :RequestLocals, :user, :location, :language
 end
