@@ -9,22 +9,35 @@ directives.directive("googleMap", ['MapInitializer', function (MapInitializer) {
       var showTraffic = (attrs.traffic === "true");
       var lat         = Number(attrs.lat) || 38.8976757; 
       var lng         = Number(attrs.lng) || -77.036528;
-      // Set up map options
-      var gmap = {
-        areaName:   '',
-        options: {
-          center: { lat: lat, lng: lng },
-          zoom: zoom,
-          disableDefaultUI : true
+
+      var drawMap = function() {
+        // Set up map options
+        var gmap = {
+          areaName:   '',
+          options: {
+            center: { lat: lat, lng: lng },
+            zoom: zoom,
+            disableDefaultUI : true
+          }
         }
+        // draw
+        MapInitializer.initialized.then(function(){
+          gmap.map = new google.maps.Map(elem[0], gmap.options);
+          if (showTraffic) {
+            gmap.trafficLayer  = new google.maps.TrafficLayer();
+            gmap.trafficLayer.setMap(gmap.map);
+          }
+        });
       }
-      // draw the map
-      MapInitializer.initialized.then(function(){
-        gmap.map = new google.maps.Map(elem[0], gmap.options);
-        if (showTraffic) {
-          gmap.trafficLayer  = new google.maps.TrafficLayer();
-          gmap.trafficLayer.setMap(gmap.map);
-        }
+      drawMap();
+      
+      attrs.$observe('lat',function(){
+        lat         = Number(attrs.lat) || 38.8976757; 
+        drawMap();
+      });
+      attrs.$observe('lng',function(){
+        lng         = Number(attrs.lng) || -77.036528;
+        drawMap();
       });
       
     }
