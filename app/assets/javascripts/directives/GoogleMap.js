@@ -9,6 +9,7 @@ directives.directive("googleMap", ['MapInitializer', function (MapInitializer) {
       var showTraffic = (attrs.traffic === "true");
       var lat         = Number(attrs.lat) || 38.8976757; 
       var lng         = Number(attrs.lng) || -77.036528;
+      var centerPin   = (attrs.centerPin === "true");
 
       var drawMap = function() {
         // Set up map options
@@ -27,7 +28,15 @@ directives.directive("googleMap", ['MapInitializer', function (MapInitializer) {
             gmap.trafficLayer  = new google.maps.TrafficLayer();
             gmap.trafficLayer.setMap(gmap.map);
           }
+          if (centerPin) {
+            var marker = new google.maps.Marker({
+                position: { lat: lat, lng: lng },
+                map: gmap.map,
+                title: 'Hello World!'
+            });
+          }
         });
+
       }
       drawMap();
       
@@ -39,7 +48,7 @@ directives.directive("googleMap", ['MapInitializer', function (MapInitializer) {
         lng         = Number(attrs.lng) || -77.036528;
         drawMap();
       });
-      
+
     }
   };
 }]);

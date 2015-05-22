@@ -11,7 +11,6 @@ app.controller("RetailerController", ['$scope', '$routeParams', '$resource', fun
           return $scope.retailer = retailer;
       }), (function (httpResponse) {
           $scope.retailer = null;
-          return flash.error = "Sorry, Retailer Not Found!";
       }));
   } else {
       $scope.retailer = {};

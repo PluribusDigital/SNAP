@@ -6,5 +6,7 @@
   <div> {{retailer.city}}, {{retailer.state}}, {{retailer.zip5}} </div>
 </p>
 
-<div google-map style="height: 20em" class="col-xs-12" zoom="10" traffic="true" lat="{{retailer.latitude}}" lng="{{retailer.longitude}}">
+<div google-map style="height: 20em" class="col-xs-12" zoom="10" 
+  lat="{{retailer.latitude}}" lng="{{retailer.longitude}}"
+  center-pin="true">
 </div>
