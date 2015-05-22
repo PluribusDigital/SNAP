@@ -1,4 +1,4 @@
-app.controller("HomeController", function ($scope, $http) {
+app.controller("HomeController", function ($scope, $http, $window) {
     $scope.zipCode = '';
     $scope.retailers = [];
     $scope.enableLocation = ('geolocation' in navigator);
@@ -62,6 +62,10 @@ app.controller("HomeController", function ($scope, $http) {
     ///////////////////////////////////////////////////////////////////////////
     // Bound Methods
 
+    $scope.retailerDetail = function (id) {
+        $window.location = '#/retailer/' + id;
+    };
+
     $scope.searchFromHere = function () {
         navigator.geolocation.getCurrentPosition($scope.onCurrentPosition);
     };
@@ -70,4 +74,10 @@ app.controller("HomeController", function ($scope, $http) {
         $scope.lookupLatLng();
     };
 
+    ///////////////////////////////////////////////////////////////////////////
+    // Initialize
+
+    if ($scope.enableLocation) {
+        $scope.searchFromHere();
+    }
 });

@@ -1,14 +1,27 @@
-﻿<div class="col-xs-12 table-responsive" ng-show="retailers.length > 0">
+﻿<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">SNAP</a>
+        </div>
+    </div>
+</nav>
+
+<div class="col-xs-12 table-responsive" ng-show="retailers.length > 0">
     <table class="table" style="table-layout: fixed; width: 100%">
-        <tr ng-repeat="r in retailers">
-            <td style="white-space: normal"><a ng-href="{{r.url}}">{{r.name}}</a></td>
+        <tr ng-repeat="r in retailers" ng-click="retailerDetail(r.id)">
+            <td style="white-space: normal">{{r.name}}</td>
             <td>{{r.address1}}<br />{{r.city}}, {{r.state}} {{r.zip4}}-{{r.zip5}}</td>
         </tr>
     </table>
 </div>
 
 <!-- div google-map style="height: 100px;" class="col-xs-12" zoom="10" traffic="true" ng-show="retailers.length < 1" -->
-
+<div ng-show="retailers.length < 1">
+    <div class="jumbotron">
+        <h4>Please enter a zip code to find the closest retailer</h4>
+    </div>
+</div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <table class="col-xs-12">
