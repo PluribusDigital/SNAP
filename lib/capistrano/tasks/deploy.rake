@@ -17,7 +17,7 @@ namespace :deploy do
   end
 
   
-  desc "Setup database"
+  desc "Populate database"
   task :db_setup do
     on roles(:app) do
 	  within fetch(:release_path) do
