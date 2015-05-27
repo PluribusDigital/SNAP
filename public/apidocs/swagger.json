@@ -1,0 +1,89 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "0.0.1",
+        "title": "SNAP Retailers"
+    },
+    "paths": {
+        "/retailers": {
+            "get": {
+                "description": "Gets `Retailer` objects.\n",
+                "parameters": [
+                    {
+                        "name": "lat",
+                        "in": "query",
+                        "description": "Latitude of a geo position",
+                        "required": false,
+                        "type": "number",
+                        "format": "float"
+                    },
+                    {
+                        "name": "lng",
+                        "in": "query",
+                        "description": "Longitude of a geo position",
+                        "required": false,
+                        "type": "number",
+                        "format": "float"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "title": "Data",
+                            "type": "object",
+                            "properties": {
+                                "meta": {
+                                    "type": "string"
+                                },
+                                "retailers": {
+                                    "title": "ArrayOfRetailers",
+                                    "type": "array",
+                                    "items": {
+                                        "title": "Retailer",
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "double"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "longitude": {
+                                                "type": "float"
+                                            }, 
+                                            "latitude": {
+                                                "type": "float"
+                                            }, 
+                                            "address1": {
+                                                "type": "string"
+                                            }, 
+                                            "address2": {
+                                                "type": "string"
+                                            }, 
+                                            "city": {
+                                                "type": "string"
+                                            }, 
+                                            "state": {
+                                                "type": "string"
+                                            }, 
+                                            "zip5": {
+                                                "type": "string"
+                                            }, 
+                                            "zip4": {
+                                                "type": "string"
+                                            }, 
+                                            "county": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
