@@ -84,6 +84,11 @@ production:
   database: hello_production
   username: hello
   password: <%= ENV['TASKINATOR_DATABASE_PASSWORD'] %>
+  
+demo:
+  <<: *default
+  database: development
+  username: stsidev
 
 cucumber:
   <<: *test

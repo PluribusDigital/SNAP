@@ -53,6 +53,10 @@ group :deploy do
   gem 'chef'
   gem 'knife-ec2'
   gem 'knife-solo'
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano3-nginx'
+  gem 'capistrano-bundler'
 end
 
 # Windows
