@@ -22,7 +22,6 @@ namespace :deploy do
     on roles(:app) do
 	  within fetch(:release_path) do
 	    with rails_env: fetch(:stage) do
-          execute :rake, "db:reset"
           execute :rake, "pop"
 		end
 	  end
