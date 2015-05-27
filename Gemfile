@@ -49,5 +49,11 @@ group :test, :development do
   gem 'dotenv-rails'
 end
 
+group :deploy do
+  gem 'chef'
+  gem 'knife-ec2'
+  gem 'knife-solo'
+end
+
 # Windows
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
