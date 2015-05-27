@@ -25,6 +25,7 @@ require 'capistrano/deploy'
 
 require 'capistrano/rails'
 require 'capistrano/nginx'
+require 'capistrano/npm'
 
 
 
