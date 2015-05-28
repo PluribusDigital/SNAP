@@ -18,7 +18,7 @@ app.controller("HomeController", function ($scope, $http, $window) {
     };
 
     $scope.executeSearch = function () {
-        $http.get('http://localhost:3000/retailers.json', {
+        $http.get('/retailers.json', {
             params: { 'lat': $scope.lat, 'lng': $scope.lng },
         }).success($scope.onRetailers)
             .error($scope.onError);
