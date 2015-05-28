@@ -57,6 +57,7 @@ group :deploy do
   gem 'capistrano-rails'
   gem 'capistrano3-nginx'
   gem 'capistrano-bundler'
+  gem 'capistrano-npm'
 end
 
 # Windows
