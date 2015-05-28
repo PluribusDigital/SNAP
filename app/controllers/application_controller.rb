@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  before_filter :set_locale
+
   # TODO: work out a way to send the error to angular
   rescue_from ActiveRecord::RecordNotFound do |exception|
     redirect_to root_path, alert: exception.message
@@ -18,4 +20,10 @@ class ApplicationController < ActionController::Base
     Current.location ||= Location.new
   end
   helper_method :current_location
+
+  private
+    def set_locale
+      I18n.locale = params[:locale] || request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first
+	  logger.debug "* Locale set to '#{I18n.locale}'"
+    end
 end
