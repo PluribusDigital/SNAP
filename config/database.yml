@@ -87,8 +87,8 @@ production:
   
 demo:
   <<: *default
-  database: hello_demo
-  username: demo
+  database: development
+  username: stsidev
 
 cucumber:
   <<: *test
