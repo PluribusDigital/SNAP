@@ -10,37 +10,37 @@ These instructions describe how to deploy the SNAP application to Amazon Web Ser
 
 ##Deployment Steps
 1. Run the following to install the gems required for deployment:
-```sh
-bundle install
-```
-If you're only interested in deployment and not development you can reduce the gems required with:
-```sh
-bundle install --without development test production staging
-```
+   ```sh
+   bundle install
+   ```
+   If you're only interested in deployment and not development you can reduce the gems required with:
+   ```sh
+   bundle install --without development test production staging
+   ```
 2. Set AWS environment variables
-```sh
-export AWS_CREDENTIALS_FILE=/path/to/aws_credentials_file
-export AWS_KEY=/path/to/default-dev.pem
-```
+   ```sh
+   export AWS_CREDENTIALS_FILE=/path/to/aws_credentials_file
+   export AWS_KEY=/path/to/default-dev.pem
+   ```
 3. Bring up an EC2 instance using knife.
-```sh
-knife ec2 server create \
-  --groups=dev \
-  --ssh-user=ec2-user \
-  --ssh-key=default-dev \
-  --identity-file=${AWS_KEY} \
-  --node-name=select_a_server_name
-```
-Answer yes when prompted to accept the authenticity of an unknown host.
-After knife is finished make note of the returned "Public DNS Name". 
+   ```sh
+   knife ec2 server create \
+     --groups=dev \
+     --ssh-user=ec2-user \
+     --ssh-key=default-dev \
+     --identity-file=${AWS_KEY} \
+     --node-name=select_a_server_name
+   ```
+   Answer yes when prompted to accept the authenticity of an unknown host.
+   After knife is finished make note of the returned "Public DNS Name". 
 4. Set EC2 instance environment variable
-```sh
-export APP_SERVER="The public dns name of the ec2 instance that was just created"
-```
+   ```sh
+   export APP_SERVER="The public dns name of the ec2 instance that was just created"
+   ```
 5. Deploy SNAP to your EC2 instance
-```sh
-cap demo deploy
-```
+   ```sh
+   cap demo deploy
+   ```
 
 If everything succeeded the SNAP application should be available using the public DNS name assigned to your EC2 instance.
 
