@@ -12,5 +12,5 @@ Provides the starting point for STSI prototypes
 ## AWS Deployment
 Please read the [AWS Deployment Guide] to deploy SNAP to an Amazon EC2 instance.
 
-[AWS Depoyment Guide] DEPLOY.md
+[AWS Depoyment Guide]:DEPLOY.md
 
