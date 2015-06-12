@@ -9,3 +9,9 @@ Provides the starting point for STSI prototypes
 3. `rake bower:install`
 4. `rake pop` to populate data
 
+## AWS Deployment
+Please read the [AWS Deployment Guide] to deploy SNAP to an Amazon EC2 instance.
+
+
+
+[AWS Deployment Guide]:DEPLOY.md

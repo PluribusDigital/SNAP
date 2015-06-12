@@ -7,12 +7,10 @@
 #role_path       									'kitchen/roles'
 ssl_verify_mode 									:verify_peer
 
-#knife[:aws_credential_file] =    '/path/to/credentials/file/in/above/format'
-knife[:aws_credential_file] =     '/vagrant/aws_credentials.txt'
+knife[:aws_credential_file] =     "#{ENV['AWS_CREDENTIALS_FILE']}"
 knife[:flavor] =                  'm3.medium'
-knife[:image] =                   'ami-5b6c8b30'
+knife[:image] =                   'ami-5340a638'
 knife[:region] =                  'us-east-1'
 knife[:availability_zone] =       'us-east-1b'
-knife[:solo] =                    true
-#knife[:aws_ssh_key_id] =          '/path/to/pem/file/without/extension'    
+knife[:solo] =                    true   
 knife[:aws_ssh_key_id] =          'default-dev'     

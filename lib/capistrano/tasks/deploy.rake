@@ -3,7 +3,7 @@ namespace :deploy do
   desc "Create symbolic link for nginx app folder"
   task :create_app_link do
     on roles(:app) do
-      execute "ln -s /var/www/#{fetch(:application)} /var/www/app"
+      execute "if test ! -d /var/www/app; then ln -s /var/www/#{fetch(:application)} /var/www/app; else echo 0; fi"
     end
   end
   
@@ -22,6 +22,7 @@ namespace :deploy do
     on roles(:app) do
 	  within fetch(:release_path) do
 	    with rails_env: fetch(:stage) do
+		  execute :rake, "db:reset"
           execute :rake, "pop"
 		end
 	  end
