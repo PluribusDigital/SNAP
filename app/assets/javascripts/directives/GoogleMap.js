@@ -7,9 +7,13 @@ directives.directive("googleMap", ['MapInitializer', function (MapInitializer) {
       // Parse HTML attrs, set defaults
       var zoom        = Number(attrs.zoom) || 9;
       var showTraffic = (attrs.traffic === "true");
-      var lat         = Number(attrs.lat) || 38.8976757; 
-      var lng         = Number(attrs.lng) || -77.036528;
       var centerPin   = (attrs.centerPin === "true");
+      var lat,lng;
+      var setLatLng = function() {
+        lat = Number(attrs.latlng.split(",")[0]) || 38.8976757; 
+        lng = Number(attrs.latlng.split(",")[1]) || -77.036528;
+      }
+      setLatLng();
 
       var drawMap = function() {
         // Set up map options
@@ -40,12 +44,8 @@ directives.directive("googleMap", ['MapInitializer', function (MapInitializer) {
       }
       drawMap();
       
-      attrs.$observe('lat',function(){
-        lat         = Number(attrs.lat) || 38.8976757; 
-        drawMap();
-      });
-      attrs.$observe('lng',function(){
-        lng         = Number(attrs.lng) || -77.036528;
+      attrs.$observe('latlng',function(){
+        setLatLng();
         drawMap();
       });
 

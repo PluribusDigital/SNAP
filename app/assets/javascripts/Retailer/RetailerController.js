@@ -8,6 +8,7 @@ app.controller("RetailerController", ['$scope', '$routeParams', '$resource', '$l
       Retailer.get({
           id: $routeParams.id
       }, (function (retailer) {
+          retailer.latlng = retailer.latitude + "," + retailer.longitude;
           return $scope.retailer = retailer;
       }), (function (httpResponse) {
           $scope.retailer = null;
@@ -19,5 +20,5 @@ app.controller("RetailerController", ['$scope', '$routeParams', '$resource', '$l
       return $location.path("/");
   };
 
-  window.scope = $scope;
+  window.scope = $scope; // for debugging
 }]);
